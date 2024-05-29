@@ -29,6 +29,68 @@ TEST(MatrixMultiplicationTest, TestMultiplyMatrices) {
     ASSERT_EQ(C, expected) << "Matrix multiplication test failed! :(((((";
 }
 
+/*
+ * #####################################################################################################################
+ * Testing neutral element property (identity matrix on left).
+ * I x B = B
+ * #####################################################################################################################
+ */
+TEST(MatrixMultiplicationTest, TestLeftIdentityMatrix) {
+    std::vector<std::vector<int>> A = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+    };
+    std::vector<std::vector<int>> B = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+    };
+
+    std::vector<std::vector<int>> C(2, std::vector<int>(2, 0));
+
+    multiplyMatrices(A, B, C, 2, 3, 2);
+
+    std::vector<std::vector<int>> expected = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+    };
+
+    ASSERT_EQ(C, expected) << "Multiplication with left identity matrix failed! :(((((";
+}
+
+/*
+ * #####################################################################################################################
+ * Testing neutral element property  (identity matrix on left).
+ * A x I = A
+ * #####################################################################################################################
+ */
+TEST(MatrixMultiplicationTest, TestRightIdentityMatrix) {
+    std::vector<std::vector<int>> A = {
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+    };
+    std::vector<std::vector<int>> B = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+    };
+
+    std::vector<std::vector<int>> C(2, std::vector<int>(2, 0));
+
+    multiplyMatrices(A, B, C, 2, 3, 2);
+
+    std::vector<std::vector<int>> expected = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+    };
+
+    ASSERT_EQ(C, expected) << "Multiplication with right identity matrix failed! :(((((";
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
