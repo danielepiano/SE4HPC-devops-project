@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup MPI
+        uses: mpi4py/setup-mpi@v1
+
       - name: Setup CMake
         uses: jwlawson/actions-setup-cmake@v2
       - name: Configure CMake
